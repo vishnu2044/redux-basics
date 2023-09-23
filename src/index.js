@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// Import the Bootstrap CSS and JavaScript files
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import userReducerFunction from './components/features/User' ;
+import themReducerFunction from './components/features/Theme';
+
+
+const store = configureStore({
+  reducer : {
+    user : userReducerFunction,
+    theme : themReducerFunction
+  }
+
+})
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    
+    <Provider store={store}>
+      <App />
+    </Provider>
+
   </React.StrictMode>
 );
 
